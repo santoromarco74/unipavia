@@ -1,0 +1,17 @@
+Appunti per progetto IOT programming
+-	Nucleo STM F401RE
+-	BLE X-NUCLEO-IDB05A1
+-	Sensori
+-	Display HD44780
+-	Led RGB
+-	Board
+
+
+
+Simulazione vending machine:
+-	Applicazione Android:
+	-	Visualizza resto
+	-	Verificare interfaccia I2C
+	-	Mini catalogo prodotti
+	-	
+	
