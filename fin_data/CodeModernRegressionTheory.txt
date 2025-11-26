@@ -1,0 +1,306 @@
+    Preliminary
+    
+    install.packages("glmnet")
+    install.packages("rsample")
+    install.packages("AmesHousing")
+    install.packages("ggcorrplot")
+    install.packages("caret")
+    install.packages("corrplot")
+    install.packages("knitr")
+    install.packages("tidyverse")
+    library(corrplot)
+    suppressMessages(library(ggcorrplot))
+    library(ggplot2)
+    library(rsample)
+    library(knitr)
+    suppressMessages(library(tidyverse))
+    suppressMessages(library(caret))
+    suppressMessages(library(ggplot2))
+    suppressMessages(library(glmnet))
+    suppressMessages(library(plotly))
+    suppressMessages(library(reshape2))
+    
+    Create/clean data
+    
+    df<-data.frame(AmesHousing::make_ames())
+    df_updated<-df%>%
+       dplyr::select(-Utilities,-Longitude,-Latitude,Pool_QC,Misc_Feature,Misc_Val)
+    head(df_updated)
+    glimpse(AmesHousing::make_ames())
+    table(df_updated$Pool_QC)
+    
+    Splitting into training and testing
+    
+    set.seed(2345)
+    ames_split<-initial_split(df_updated,prop=.7,strata="Sale_Price")
+    ames_train<-training(ames_split)
+    ames_test<-testing(ames_split)
+    ames_train_x<-model.matrix(Sale_Price~.,ames_train)[,-1]
+    ames_train_y<-log(ames_train$Sale_Price)
+    ames_test_x<-model.matrix(Sale_Price~.,ames_test)[,-1]
+    ames_test_y<-log(ames_test$Sale_Price)
+    dim(ames_train_x)
+    
+    A helpful heat map
+    
+    housing_numeric=df_updated%>%
+       dplyr::select_if(is.numeric)%>%
+       drop_na()
+    cc2=cor(housing_numeric)
+    cc2_melt=melt(cc2)
+    gz=ggplot(cc2_melt,mapping=aes(x=Var1,y=Var2,fill=value))+
+       geom_tile()+
+       theme(axis.text.x=element_text(angle=90,hjust=1))+
+       ggtitle("Heat map")+
+       ylab("")+
+       xlab("")+
+       scale_fill_distiller(palette="RdPu")
+    ggplotly(gz,tooltip="text")
+    findCorrelation(
+       cor(housing_numeric),
+       cutoff=0.6,
+       verbose=TRUE,
+       names=TRUE,
+       exact=ncol(cor(housing_numeric))<100
+    )
+    
+    An example of OLS failure due to collinearity
+    
+    lm(Sale_Price~Gr_Liv_Area+TotRms_AbvGrd,data=df_updated)
+    lm(Sale_Price~Gr_Liv_Area,data=df_updated)
+    lm(Sale_Price~TotRms_AbvGrd,data=df_updated)
+    
+    Ridge
+    
+    options(repr.plot.width=10,repr.plot.height=8)
+    ames_IA_ridge<-glmnet(
+       x=ames_train_x,
+       y=ames_train_y,
+       alpha=0
+       )
+    plot(ames_IA_ridge,xvar="lambda")
+    sprintf('Max Lambda = %.3f',max(ames_IA_ridge$lambda))
+    sprintf('Min Lambda = %.3f',min(ames_IA_ridge$lambda))
+    print('Min coef')
+    coef(ames_IA_ridge)[c("Gr_Liv_Area","TotRms_AbvGrd"),1]
+    set.seed(2345)
+    ames_ridge_CV<-cv.glmnet(
+       x=ames_train_x,
+       y=ames_train_y,
+       type.measure="mse",
+       alpha=0
+       )
+    plot(ames_ridge_CV)
+    pred_ames_ridge_train<-predict(ames_ridge_CV,ames_train_x,s="lambda.min")
+    pred_ames_ridge_test<-predict(ames_IA_ridge,ames_test_x,s=ames_ridge_CV$lambda.min)
+    sprintf('test rmse: %.3f',sqrt(mean((pred_ames_ridge_test-ames_test_y)^2)))
+    min_mse_ridge<-min(ames_ridge_CV$cvm)
+    lambda_min_mse_ridge<-ames_ridge_CV$lambda.min
+    
+    options(repr.plot.width=10,repr.plot.height=8)
+    coef(ames_ridge_CV,s="lambda.min") %>%
+       tidy() %>%
+       filter(row!="(Intercept)") %>%
+       top_n(25,wt=abs(value)) %>%
+       ggplot(aes(value,reorder(row,value)))+
+       geom_point()+
+       ggtitle("Most influential regressors")+
+       xlab("coefficient")+
+       ylab("null")
+    
+    LASSO
+    
+    ames_IA_lasso<-glmnet(
+       x=ames_train_x,
+       y=ames_train_y,
+       alpha=1
+       )
+    plot(ames_IA_lasso,xvar="lambda")
+    ames_lasso_CV<-cv.glmnet(
+       x=ames_train_x,
+       y=ames_train_y,
+       type.measure="mse",
+       alpha=1
+       )
+    plot(ames_lasso_CV)
+    pred_ames_lasso_test<-predict(ames_IA_lasso,ames_test_x,s=ames_lasso_CV$lambda.min)
+    sprintf('test rmse: %.3f',sqrt(mean((pred_ames_lasso_test-ames_test_y)^2)))
+    options(repr.plot.width=10,repr.plot.height=8)
+    coef(ames_lasso_CV,s="lambda.min") %>%
+       tidy() %>%
+       filter(row!="(Intercept)") %>%
+       ggplot(aes(value,reorder(row,value),color=value>0))+
+       geom_point()+
+       ggtitle("Most influential regressors")+
+       xlab("coefficient")+
+       ylab("null")
+    
+    Elastic nets
+    
+    lists.of.your.fits<-list()
+    for(i in 0:10){
+       fit.name<-paste0('alpha',i/10)
+       lists.of.your.fits[[fit.name]]<-(cv.glmnet(ames_train_x, ames_train_y, type.measure="mse", alpha=i/10))
+       }
+    results<-data.frame()
+    for(i in 0:10){
+       fit.name<-paste0('alpha',i/10)
+       predicted<-(predict(lists.of.your.fits[[fit.name]], s=lists.of.your.fits[[fit.name]]$lambda.min, newx=ames_test_x))
+       rmse<-sqrt(mean(predicted-ames_test_y)^2)
+       temp<-data.frame(alpha=i/10, fit.name=fit.name, rmse=rmse)
+       results<-rbind(results, temp)
+    }
+    print(results)
+    
+    ames_IA_enet<-glmnet(x=ames_train_x,y=ames_train_y,alpha=0.5)
+    fit.enet.cv<-cv.glmnet(x=ames_train_x, y=ames_train_y, type.measure="mse", alpha=0.5)
+    pred_fit_enet_train<-predict(fit.enet.cv, ames_train_x, s="lambda.min")
+    pred_fit_enet_test<-predict(ames_IA_enet, ames_test_x, s=fit.enet.cv$lambda.min)
+    sprintf('test rmse with enet: %.3f',sqrt(mean((pred_fit_enet_test-ames_test_y)^2)))
+    
+    Regression trees
+    
+    install.packages("rsample")
+    install.packages("dplyr")
+    install.packages("rpart")
+    install.packages("rpart.plot")
+    install.packages("ipred")
+    install.packages("caret")
+    install.packages("AmesHousing")
+    library(rsample)
+    library(dplyr)
+    library(rpart)
+    library(rpart.plot)
+    library(ipred)
+    library(caret)
+    
+    m1 <- rpart(
+     formula = Sale_Price ~.,
+     data = ames_train,
+     method = "anova"
+     )
+    m1
+    rpart.plot(m1)
+    plotcp(m1)
+    
+    m2 <- rpart(
+     formula = Sale_Price ~.,
+     data = ames_train,
+     method = "anova",
+     control = list(cp = 0, xval = 10)     //check out "rpart.control in r"
+    )
+    plotcp(m2)
+    abline(v = 12, lty = "dashed")
+    
+    m3 <- rpart(
+     formula = Sale_Price ~.,
+     data = ames_train,
+     method = "anova",
+     control = list(minsplit = 10, maxdepth = 12, xval = 10)
+    )
+    m3$cptable
+    
+    A bit of coding on regression trees
+    
+    hyper_grid <- expand.grid(
+     minsplit = seq(5, 20, 1),
+     maxdepth = seq(8, 15, 1)
+    )
+    
+    models <- list()
+    for (i in 1:nrow(hyper_grid)) {
+         minsplit <- hyper_grid$minsplit[i]
+     maxdepth <- hyper_grid$maxdepth[i]
+    models[[i]] <- rpart(
+     formula = Sale_Price ~.,
+     data = ames_train,
+     method = "anova",
+     control = list(minsplit = minsplit, maxdepth = maxdepth)
+     )
+    }
+    get_cp <- function(x) {
+     min <- which.min(x$cptable[, "xerror"])
+     cp <- x$cptable[min, "CP"]
+    }
+    get_min_error <- function(x) {
+     min <- which.min(x$cptable[, "xerror"])
+     xerror <- x$cptable[min, "xerror"]
+    }
+    hyper_grid %>%
+     mutate(
+     cp = purrr::map_dbl(models, get_cp),
+     error = purrr::map_dbl(models, get_min_error)
+     ) %>%
+     arrange(error) %>%
+     top_n(-5, wt = error)
+    
+    optimal_tree <- rpart(
+     formula = Sale_Price ~.,
+     data = ames_train,
+     method = "anova",
+     control = list(minsplit = 11, maxdepth = 8, cp = 0.01)
+     )
+    pred <- predict(optimal_tree, newdata = ames_test)
+    RMSE(pred = pred, obs = ames_test$Sale_Price)  //RMSE=40k means price is (312±1.96∗40)
+    
+    Bagging
+    
+    set.seed(123)
+    bagged_m1 <- bagging(
+     formula = Sale_Price ~.,
+     data = ames_train,
+     coob = TRUE
+    )
+    bagged_m1
+    
+    ntree <- 10:50
+    rmse <- vector(mode = "numeric", length = length(ntree))
+    for (i in seq_along(ntree)) {
+     set.seed(123)
+          model <- bagging(
+     formula = Sale_Price ~.,
+     data = ames_train,
+     coob = TRUE,
+     nbagg = ntree[i]
+    )
+     rmse[i] <- model$err
+    }
+    plot(ntree, rmse, type = 'l', lwd = 2)
+    abline(v = 25, col = "red", lty = "dashed")
+    
+    pred <- predict(bagged_m1, ames_test)
+    RMSE(pred, ames_test$Sale_Price) //RMSE=34k means price is (312±1.96∗34)
+    
+    Random forests
+    
+    install.packages("caret")
+    install.packages("ranger")
+    install.packages("tidyverse")
+    install.packages("e1071")
+    library(caret)
+    library(ranger)
+    library(tidyverse)
+    library(e1071)
+    
+    rf_fit <- train(Sale_Price ~.,
+     data = ames_train,
+     method = "ranger")
+    
+    Boosting
+    
+    install.packages("gbm") 
+    library(gbm) 
+    set.seed(123) # for reproducibility
+    ames_gbm1 <- gbm(
+     formula = Sale_Price ~.,
+     data = ames_train,
+     distribution = "gaussian", // specifies the loss function, Gaussian means quadratic loss
+     n.trees = 5000,
+     shrinkage = 0.1,
+     interaction.depth = 3, // y_{i}=ax_{1i}+bx_{2i}+cx_{3i}+...+αx_{1i}x_{2i}+βx_{2i}x_{3i}+a^{c}x_{1i}x_{2i}x_{3i}+b^{c}x_{1i}x_{2i}x_{4i}
+     n.minobsinnode = 10, // minimum sample size in each leaf
+     cv.folds = 10
+    )
+        best <- which.min(ames_gbm1$cv.error)
+        sqrt(ames_gbm1$cv.error[best])
+    
