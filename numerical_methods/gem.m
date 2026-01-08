@@ -2,8 +2,9 @@ n=3;
 m=3;
 i=1;
 j=1;
-matrix = [1, 2, 3; 4, 5, 6; 2, 3, 7]; % Initialize a matrix of size n x m
-for i = 1:n
+mat= [1, 2, 3; 4, 5, 6; 2, 3, 7]; % Initialize a matrix of size n x m
+matrix=mat;
+for i = 1:n-1
     if matrix(i,j)> matrix(i+1,j)
         pivot=matrix(i,j);
         for x = i+1:n
@@ -11,10 +12,15 @@ for i = 1:n
         end
         
     else
-        v=matrix(x,:);
-        matrix(x,:)=matrix(x+1,:);
-        matrix(x+1,:)=v;
+        v=matrix(i,:);
+        matrix(i,:)=matrix(i+1,:);
+        matrix(i+1,:)=v;
     end
+    print("La matrice di partenza é ");
+    disp(mat);
+    print("La matrice di arrivo é ");
+        disp(matrix);
+
     
 end
 
