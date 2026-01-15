@@ -13,7 +13,7 @@ matrix=mat;
         end
         
     else
-        scambia_righe(matrix(i,:),matrix(i+1,:));
+        
     end
     
 
@@ -24,9 +24,8 @@ disp("La matrice di partenza é ");
     disp("La matrice di arrivo é ");
         disp(matrix);
 
-function (rsup(:),rinf(:))=scambia_righe(riga_inf(:),riga_sup(:))
-        v=riga_inf(:);
-        riga_inf(:)=riga_sup(:);
-        riga_sup(:)=v;
+function [rsup,rinf]=scambia[matrix(i,:),matrix(i+1,:)]
+        v=matrix(i,:);
+        matrix(i,:)=matrix(i+1,:);
+        matrix(i+1,:)=v;
 
-end
