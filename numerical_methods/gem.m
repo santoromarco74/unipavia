@@ -1,32 +1,44 @@
 clc;
-n=3;
-m=3;
-i=1;
-j=1;
+n_righe=3;
+n_col=3;
+% Initialize the transformation matrix
+l = zeros(n_righe, n_col);
+l = diag(ones(n_righe,1));
+
 mat= [ 4, 5, 6; 1, 2, 3; 2, 3, 7]; % Initialize a matrix of size n x m
 matrix=mat;
-%for i = 1:n-1
-    if matrix(i,j)> matrix(i+1,j)
-        pivot=matrix(i,j);
-        for x = i+1:n
-            matrix(x+1,:)=matrix(i,j)-(matrix(x+1,j)/pivot)*matrix(x+1,:);
+for k=1:n_col
+    for i= (k+1):(n_righe)
+        m=matrix(i,k)/matrix(1,k);
+        for j=k:n_col
+            matrix(i,j)=matrix(i,j)-m*matrix(1,j);
         end
-        
-    else
-        scambia_righe(matrix(i,:),matrix(i+1,:));
+        l(i,k)=m;
+       disp("Per i ="+ i + " e k=" + k + "ed m=" + m);
+       disp(matrix);
     end
-    
+end
 
-    
-%end
 disp("La matrice di partenza é ");
     disp(mat);
     disp("La matrice di arrivo é ");
         disp(matrix);
 
-function (rsup(:),rinf(:))=scambia_righe(riga_inf(:),riga_sup(:))
-        v=riga_inf(:);
-        riga_inf(:)=riga_sup(:);
-        riga_sup(:)=v;
 
-end
+        % Display the transformation matrix
+disp("La matrice di trasformazione é ");
+disp(l);
+
+disp ("Invece secondo Matlab:");
+[L,U,P]=lu(mat);
+disp (L);
+disp (U);
+disp (P);
+
+
+% function (rsup(:),rinf(:))=scambia_righe(riga_inf(:),riga_sup(:))
+%         v=riga_inf(:);
+%         riga_inf(:)=riga_sup(:);
+%         riga_sup(:)=v;
+% 
+% end
