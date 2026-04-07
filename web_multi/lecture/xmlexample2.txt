@@ -1,0 +1,38 @@
+Invent an XML language to describe the "apartment" entity, characterized by:
+
+- Address (city, country, street, number)
+- Floor
+- Price
+- Total size
+- Size of each room
+
+Then use the language to characterize the apartment located in Milan (Italy), via Verdi 37, 3rd floor, 400000 Eur, total size 100 square meters, kitchen 20, living room 25, bedroom 20, bedroom 20, bathroom 15
+
+<apartment>
+  <address country="Italy" floor="3">
+    <street>Verdi</street>
+    <number>37</number>
+  </address>
+  <price currency="eur">400000</price>
+  <size unit="sm" total="100">
+    <room name="kitchen">20</room>
+    <room name="livingroom">25</room>
+    <room name="bedrom 1">20</room>
+    <room name="bedrom 2">20</room>
+    <room name="bathroom">15</room>
+  </size>
+</apartment>
+
+<!ELEMENT apartment (address, price, size)>
+<!ELEMENT address (street, number)>
+<!ELEMENT price (#PCDATA)>
+<!ELEMENT size (room+)>
+<!ELEMENT room (#PCDATA)>
+
+<!ATTLIST address country CDATA #REQUIRED>
+<!ATTLIST address floor CDATA #REQUIRED>
+<!ATTLIST price currency (eur|pounds|USD) #IMPLIED>
+<!ATTLIST size unit (sm|sf) #IMPLIED>
+<!ATTLIST size total CDATA #REQUIRED>
+<!ATTLIST room name CDATA #REQUIRED>
+
