@@ -1,0 +1,27 @@
+body {
+    color: #333;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    background: #f9f9f9;
+    margin: 02em;
+}
+h1{
+    margin-top: 2em;
+    text-align: center;
+}
+h1.redtext {
+    color: red;
+}
+h2, h3 ,h4, h5, h6 {
+    text-align: right;
+}
+a[href ^="https://www.unipavia.it"] {
+    color: blue;
+    text-decoration: none;
+}
+pre {
+    font-family: monospace;
+    margin-left: 2em;
+    font-size: 90%;
+    
+}
