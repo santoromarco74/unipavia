@@ -1,0 +1,14 @@
+@font-face {
+    font-family: "Kingthings Christmas";
+    src: url("Kingthings_Christmas.woff") format("woff"),
+         url("Kingthings_Christmas.ttf") format("truetype"),
+         url("Kingthings_Christmas.svg#KingthingsChristmas")  
+    format("svg");
+    font-weight: normal;
+    font-style: normal;
+}
+
+#myfont {
+  font-family: "Kingthings Christmas";
+  font-size: 3em;
+}
