@@ -134,3 +134,28 @@ img {
   font-family: "Kingthings Christmas";
   font-size: 3em;
 }
+#tr2d {
+  width: 200px;
+  height: 100px;
+  background-color: yellow;
+  transition: all 2s;
+}
+#tr2d:hover {
+  transform: rotate(45deg);
+}
+
+#tbl {
+  background-image: url("tbl.jpg");
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-origin: border-box;
+  box-sizing: border-box;
+  display: block;
+  width: 86px; height: 86px;
+  border: 43px solid rgba(0, 0, 0, 0.7);
+  border-radius: 100%;
+  transition: 0.5s ease;
+}
+#tbl:hover {
+  border-width: 0px;
+}
