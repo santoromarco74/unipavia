@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Registration form</title>
+        <style>
+            #formstruct {
+            display: table;
+            }
+            #labels, #inputs {
+            display: table-cell;
+            }
+            input { padding: 0px; margin: 0px; }
+        </style>
+        <script src="controls.js">
+        </script> 
+    </head>
+    <body>
+        <h1 style="font-family: sans-serif">Registration Form</h1>
+        <script>
+            var today = new Date();
+            document.write("<h2>Date: " + today.getDate() + "/" +
+            (today.getMonth() + 1) + "/" +
+            today.getFullYear() + ", Time: " +
+            today.getHours() + ":" +
+            today.getMinutes() + "</h2>");
+        </script>
+        <hr width="40%" align="left">
+        <form name="registration" id="registration" action="process.php">
+            <div id="formstruct">
+                <div id="labels">
+                    <label for="surname">Family name&nbsp;&nbsp;</label><br>
+                    <label for="name">First name</label><br>
+                    <label for="birthyear">Birth year</label><br>
+                </div>
+                <div id="inputs">
+                    <input name="surname" id="surname" size="20"><br>
+                    <input name="name" id="name" size="20"><br>
+                    <input name="birthyear" id="birthyear" size="3" onchange="calculateYears()"><br>
+                </div>
+            </div>
+            (so you are or are going to be&nbsp;
+            <input name="years" id="years" size="1" readonly>)<br>
+            <input type="button" value="Send" onclick="checkForm(); draw()" >
+            
+        </form>
+    </body>
+    <canvas width="200" height="200" id="canv"></canvas>
+</html>
