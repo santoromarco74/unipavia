@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset=”utf-8”>
+        <title>Online Books</title>
+        <link rel="stylesheet" href="mystyle.css">
+        <style>
+            table {
+            width: 60%;
+            table-layout: fixed;
+  
+            }
+            table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+            vertical-align: top;
+            padding: 8px;
+            }
+            td  {text-align: left; }
+            th  {text-align: center;
+                vertical-align: middle;       
+            }
+            label {
+           vertical-align: top; text-align: left
+            }
+            .p2    {
+                font-weight: bold;
+                color: green;
+            }
+        </style>
+
+    </head>
+<body>
+    
+    <h1>The strange case of Dr. Jekyll and Mr. Hyde</h1>
+    <h2>Story of the Door</h2>
+    <p>
+        <span class="special">Mr. Utterson the lawyer </span>
+        was a man of a rugged countenance that
+        was never lighted by a smile; cold, scanty and embarrassed in
+        discourse; backward in sentiment; lean, long, dusty, dreary and
+        yet somehow lovable.
+    </p>
+    <p class="p2">
+        At friendly meetings, and when the wine was to his taste,
+        something eminently human beaconed from his eye; something
+        indeed which never found its way into his talk, but which spoke
+        not only in these silent symbols of the after-dinner face, but
+        more often and loudly in the acts of his life.
+    </p>
+    <img src="JekyllHyde.webp" alt="Dr. Jekyll and Mr. Hyde" height="200" width="300">
+    <ol>
+        <li><a href="chapters/ch1.html">Story of the Door</a></li>
+        <li><a href="chapters/ch2.html">Search for Mr Hyde</a></li>
+        <li><a href="chapters/ch3.html">Dr Jekyll was Quite and at
+Ease</a></li>
+        <li><a href="chapters/ch4.html">The Carew Murder Case</a></li>
+    </ol>
+    <h1>Chapters</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Info\Chapter</th>
+                <th colspan="4">Chapters 1-4</th>
+                
+            </tr>
+
+
+        </thead>
+        <tbody>
+            <tr>
+                <th rowspan="2">Titles and Pages</th>
+                <td>Story of the Door</td>
+                <td>Search for Mr Hyde</td>
+                <td>Dr Jekyll was Quite and at Ease</td>
+                <td>The Carew Murder Case</td>
+            </tr>
+            <tr>
+               
+                <td>5 - 12</td>
+                <td>13 - 25</td>
+                <td>26 - 30</td>
+                <td>31 - 37</td>
+            </tr>
+        </tbody>
+    </table>
+    <h1>Registration Form</h1>
+    <form>
+
+        
+        <label for="name" class="lab">Name and Surname</label>
+        <input type="text" id="fname" name="fname"><br>
+        <label for="gender" class="lab">Gender</label>
+        
+        <input type="radio" id="M" name="gender" value="M">
+        <label for="M">M</label>
+        <input type="radio" id="F" name="gender" value="F">
+        <label for="F">F</label><br>
+        <label for="services" class="lab">I heard about this service through</label>
+        <input type="checkbox" id="service1" name="service1" value="Internet">
+        <label for="service1"> Internet</label>
+        <input type="checkbox" id="service2" name="service2" value="Press">
+        <label for="service2"> Press</label>
+        <input type="checkbox" id="service3" name="service3" value="Television">
+        <label for="service3"> Television</label><br>
+        <label for="freq" class="lab">I wish a receive a message every</label>
+        <select id="freq" name="freq">
+            <option value="male">Frequency</option>
+            <option value="female">Rarely</option>
+            <option value="other">Never</option>
+        </select><br><br>
+        <label class="lab" for="Comments">Comments</label>
+        <textarea  name="Comments" id="Comments" rows="10" cols="80" ></textarea><br><br>
+        <hr width="50%" align="left">
+        <input type="submit" value="Send">
+
+    </form>
+
+
+</body>
+</html>
