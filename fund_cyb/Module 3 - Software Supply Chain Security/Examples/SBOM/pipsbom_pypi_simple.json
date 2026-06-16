@@ -1,0 +1,207 @@
+{
+  "components": [
+    {
+      "bom-ref": "BomRef.7083418769158341.29106981303613755",
+      "name": "annotated-types",
+      "purl": "pkg:pypi/annotated-types@0.7.0",
+      "type": "library",
+      "version": "0.7.0"
+    },
+    {
+      "bom-ref": "BomRef.3257291675316851.17381085120794604",
+      "name": "attrs",
+      "purl": "pkg:pypi/attrs@25.3.0",
+      "type": "library",
+      "version": "25.3.0"
+    },
+    {
+      "bom-ref": "BomRef.449676432698776.8923146179422823",
+      "name": "beautifulsoup4",
+      "purl": "pkg:pypi/beautifulsoup4@4.13.4",
+      "type": "library",
+      "version": "4.13.4"
+    },
+    {
+      "bom-ref": "BomRef.3937328782931907.3497191795120166",
+      "name": "certifi",
+      "purl": "pkg:pypi/certifi@2025.7.14",
+      "type": "library",
+      "version": "2025.7.14"
+    },
+    {
+      "bom-ref": "BomRef.4612249868614039.36330173267172505",
+      "name": "charset_normalizer",
+      "purl": "pkg:pypi/charset-normalizer@3.4.2",
+      "type": "library",
+      "version": "3.4.2"
+    },
+    {
+      "bom-ref": "BomRef.10511993825842614.7042878688701648",
+      "name": "idna",
+      "purl": "pkg:pypi/idna@3.10",
+      "type": "library",
+      "version": "3.10"
+    },
+    {
+      "bom-ref": "BomRef.24160406962114156.6406112171826343",
+      "name": "mailbits",
+      "purl": "pkg:pypi/mailbits@0.2.2",
+      "type": "library",
+      "version": "0.2.2"
+    },
+    {
+      "bom-ref": "BomRef.6040892459770549.270127839914606",
+      "name": "packaging",
+      "purl": "pkg:pypi/packaging@25.0",
+      "type": "library",
+      "version": "25.0"
+    },
+    {
+      "bom-ref": "BomRef.2874818178493257.23364111413757993",
+      "name": "pydantic",
+      "purl": "pkg:pypi/pydantic@2.11.7",
+      "type": "library",
+      "version": "2.11.7"
+    },
+    {
+      "bom-ref": "BomRef.6918706093489471.22498179774525895",
+      "name": "pydantic-core",
+      "purl": "pkg:pypi/pydantic-core@2.33.2",
+      "type": "library",
+      "version": "2.33.2"
+    },
+    {
+      "bom-ref": "BomRef.02330449820188385.14218822010431786",
+      "name": "requests",
+      "purl": "pkg:pypi/requests@2.32.4",
+      "type": "library",
+      "version": "2.32.4"
+    },
+    {
+      "bom-ref": "BomRef.4988390250183674.220208296452015",
+      "name": "soupsieve",
+      "purl": "pkg:pypi/soupsieve@2.7",
+      "type": "library",
+      "version": "2.7"
+    },
+    {
+      "bom-ref": "BomRef.06346421573525374.6793055695250962",
+      "name": "typing-extensions",
+      "purl": "pkg:pypi/typing-extensions@4.14.1",
+      "type": "library",
+      "version": "4.14.1"
+    },
+    {
+      "bom-ref": "BomRef.10661868483652559.07120955524659012",
+      "name": "typing-inspection",
+      "purl": "pkg:pypi/typing-inspection@0.4.1",
+      "type": "library",
+      "version": "0.4.1"
+    },
+    {
+      "bom-ref": "BomRef.657909093667606.6728744154008166",
+      "name": "urllib3",
+      "purl": "pkg:pypi/urllib3@2.5.0",
+      "type": "library",
+      "version": "2.5.0"
+    }
+  ],
+  "dependencies": [
+    {
+      "dependsOn": [
+        "BomRef.449676432698776.8923146179422823",
+        "BomRef.6040892459770549.270127839914606",
+        "BomRef.24160406962114156.6406112171826343",
+        "BomRef.3257291675316851.17381085120794604",
+        "BomRef.2874818178493257.23364111413757993",
+        "BomRef.6918706093489471.22498179774525895",
+        "BomRef.7083418769158341.29106981303613755",
+        "BomRef.02330449820188385.14218822010431786",
+        "BomRef.3937328782931907.3497191795120166",
+        "BomRef.4612249868614039.36330173267172505",
+        "BomRef.10511993825842614.7042878688701648",
+        "BomRef.4988390250183674.220208296452015",
+        "BomRef.06346421573525374.6793055695250962",
+        "BomRef.10661868483652559.07120955524659012",
+        "BomRef.657909093667606.6728744154008166"
+      ],
+      "ref": "BomRef.6101923012795037.5170310708970767"
+    },
+    {
+      "dependsOn": [
+        "BomRef.4988390250183674.220208296452015",
+        "BomRef.06346421573525374.6793055695250962"
+      ],
+      "ref": "BomRef.449676432698776.8923146179422823"
+    },
+    {
+      "dependsOn": [
+        "BomRef.3257291675316851.17381085120794604"
+      ],
+      "ref": "BomRef.24160406962114156.6406112171826343"
+    },
+    {
+      "ref": "BomRef.3257291675316851.17381085120794604"
+    },
+    {
+      "ref": "BomRef.6040892459770549.270127839914606"
+    },
+    {
+      "dependsOn": [
+        "BomRef.10661868483652559.07120955524659012",
+        "BomRef.7083418769158341.29106981303613755",
+        "BomRef.6918706093489471.22498179774525895"
+      ],
+      "ref": "BomRef.2874818178493257.23364111413757993"
+    },
+    {
+      "ref": "BomRef.6918706093489471.22498179774525895"
+    },
+    {
+      "ref": "BomRef.7083418769158341.29106981303613755"
+    },
+    {
+      "dependsOn": [
+        "BomRef.3937328782931907.3497191795120166",
+        "BomRef.10511993825842614.7042878688701648",
+        "BomRef.657909093667606.6728744154008166",
+        "BomRef.4612249868614039.36330173267172505"
+      ],
+      "ref": "BomRef.02330449820188385.14218822010431786"
+    },
+    {
+      "ref": "BomRef.3937328782931907.3497191795120166"
+    },
+    {
+      "ref": "BomRef.4612249868614039.36330173267172505"
+    },
+    {
+      "ref": "BomRef.10511993825842614.7042878688701648"
+    },
+    {
+      "ref": "BomRef.4988390250183674.220208296452015"
+    },
+    {
+      "ref": "BomRef.06346421573525374.6793055695250962"
+    },
+    {
+      "ref": "BomRef.10661868483652559.07120955524659012"
+    },
+    {
+      "ref": "BomRef.657909093667606.6728744154008166"
+    }
+  ],
+  "metadata": {
+    "component": {
+      "bom-ref": "BomRef.6101923012795037.5170310708970767",
+      "name": "pypi-simple",
+      "type": "application"
+    },
+    "timestamp": "2025-07-28T09:42:58.685532+00:00"
+  },
+  "serialNumber": "urn:uuid:46e72eb0-2272-45bb-85ca-397e61217f31",
+  "version": 1,
+  "$schema": "http://cyclonedx.org/schema/bom-1.5.schema.json",
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.5"
+}

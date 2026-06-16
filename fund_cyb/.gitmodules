@@ -1,0 +1,3 @@
+[submodule "Injection"]
+	path = Module 3 - Software Supply Chain Security/Examples/build-injection-example
+	url = https://github.com/lucacav/build-injection-example

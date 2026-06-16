@@ -1,0 +1,68 @@
+{
+  "components": [
+    {
+      "bom-ref": "BomRef.26138797438504646.5266142188225156",
+      "name": "certifi",
+      "purl": "pkg:pypi/certifi@2025.7.14",
+      "type": "library",
+      "version": "2025.7.14"
+    },
+    {
+      "bom-ref": "BomRef.6091040457385494.1183937189338995",
+      "name": "chardet",
+      "purl": "pkg:pypi/chardet@3.0.4",
+      "type": "library",
+      "version": "3.0.4"
+    },
+    {
+      "bom-ref": "BomRef.4771309451331379.6304425723098963",
+      "name": "idna",
+      "purl": "pkg:pypi/idna@2.5",
+      "type": "library",
+      "version": "2.5"
+    },
+    {
+      "bom-ref": "BomRef.11632351546711961.35447129467111915",
+      "name": "urllib3",
+      "purl": "pkg:pypi/urllib3@1.22",
+      "type": "library",
+      "version": "1.22"
+    }
+  ],
+  "dependencies": [
+    {
+      "dependsOn": [
+        "BomRef.4771309451331379.6304425723098963",
+        "BomRef.11632351546711961.35447129467111915",
+        "BomRef.26138797438504646.5266142188225156",
+        "BomRef.6091040457385494.1183937189338995"
+      ],
+      "ref": "BomRef.1788511572205188.4208222026583919"
+    },
+    {
+      "ref": "BomRef.26138797438504646.5266142188225156"
+    },
+    {
+      "ref": "BomRef.6091040457385494.1183937189338995"
+    },
+    {
+      "ref": "BomRef.4771309451331379.6304425723098963"
+    },
+    {
+      "ref": "BomRef.11632351546711961.35447129467111915"
+    }
+  ],
+  "metadata": {
+    "component": {
+      "bom-ref": "BomRef.1788511572205188.4208222026583919",
+      "name": "requests",
+      "type": "application"
+    },
+    "timestamp": "2025-07-28T16:13:51.901933+00:00"
+  },
+  "serialNumber": "urn:uuid:8072919f-9c2d-4e07-ad09-2e04edf85bfc",
+  "version": 1,
+  "$schema": "http://cyclonedx.org/schema/bom-1.5.schema.json",
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.5"
+}
