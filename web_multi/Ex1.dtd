@@ -1,0 +1,7 @@
+<!ELEMENT lecture (#PCDATA)>
+<!ELEMENT course (lecture)>
+<!ELEMENT semester (course,lecture)>
+<!ELEMENT 1st-year,2nd-year,3th-year (semester,course,lecture)>
+<!ELEMENT mathematics (1st-year,2nd-year,3th-year,semester,course,lecture)>
+<!ELEMENT bachelor (mathematics ,1st-year,2nd-year,3th-year,semester,course,lecture)>
+<!ATTLIST bachelor name CDATA #REQUIRED>
