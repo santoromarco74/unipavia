@@ -1,2 +1,0 @@
-RapidFuzz==3.13.0
-requests
