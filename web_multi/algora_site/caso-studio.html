@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Caso Studio — Archivio di Stato di Savona | Algora Studio</title>
+<meta name="description" content="Come Foliarium ha digitalizzato 190 anni di storia catastale per l'Archivio di Stato di Savona. Il caso studio completo.">
+<link rel="stylesheet" href="style.css">
+<style>
+.cs-hero {
+  background: var(--ink);
+  padding: 130px clamp(24px,5vw,72px) 80px;
+}
+.cs-hero-inner { max-width: 800px; }
+.cs-hero .label { color: var(--gold); margin-bottom: 24px; }
+.cs-hero h1 { color: var(--ivory); margin-bottom: 28px; }
+.cs-hero h1 em { color: var(--gold); }
+.cs-hero p { font-size: 19px; color: rgba(249,246,239,.65); max-width: 560px; line-height: 1.9; }
+
+.cs-stat-band {
+  background: var(--green);
+  padding: 0 clamp(24px,5vw,72px);
+  display: grid; grid-template-columns: repeat(4,1fr);
+  gap: 1px; background-image: none;
+}
+.cs-stat-band { background: var(--green); }
+
+.cs-sband-inner {
+  display: grid; grid-template-columns: repeat(4,1fr);
+  gap: 1px; background: rgba(249,246,239,.1);
+}
+
+.cs-stat { background: var(--green); padding: 36px; text-align: center; }
+.cs-stat strong {
+  display: block; font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(32px,5vw,56px); font-weight: 300;
+  color: var(--ivory); line-height: 1; margin-bottom: 8px;
+}
+.cs-stat span {
+  font-family: 'Trebuchet MS', Calibri, sans-serif;
+  font-size: 10px; letter-spacing: 3px;
+  color: rgba(249,246,239,.4); text-transform: uppercase;
+}
+
+/* ── SEZIONI ────────────────────── */
+.problema { background: var(--cream); border-bottom: 1px solid var(--border); }
+.soluzione { background: var(--parchment); }
+.risultati { background: var(--parchment-2); border-top: 1px solid var(--border); }
+.sviluppo { background: var(--cream); border-top: 1px solid var(--border); }
+
+.section-title { margin-bottom: clamp(40px,5vw,64px); max-width: 600px; }
+.section-title p { font-size: 17px; color: var(--mid); margin-top: 16px; line-height: 1.8; }
+
+/* ── PRIMA DOPO ─────────────────── */
+.before-after {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: var(--border);
+  margin-bottom: 60px;
+}
+.ba-col { padding: 40px; }
+.ba-col.before { background: var(--parchment-2); }
+.ba-col.after { background: var(--ink); }
+
+.ba-label {
+  font-family: 'Trebuchet MS', Calibri, sans-serif;
+  font-size: 10px; letter-spacing: 4px; text-transform: uppercase; margin-bottom: 20px;
+}
+.ba-col.before .ba-label { color: var(--muted); }
+.ba-col.after .ba-label { color: var(--gold); }
+
+.ba-col h3 { margin-bottom: 20px; }
+.ba-col.before h3 { color: var(--ink); }
+.ba-col.after h3 { color: var(--ivory); }
+
+.ba-list { list-style: none; }
+.ba-list li {
+  padding: 12px 0; border-bottom: 1px solid;
+  font-size: 15px; display: flex; gap: 12px;
+}
+.ba-col.before .ba-list li { border-color: var(--ink-08); color: var(--mid); }
+.ba-col.after .ba-list li { border-color: rgba(249,246,239,.08); color: rgba(249,246,239,.7); }
+.ba-list li:last-child { border-bottom: none; }
+.ba-icon { flex-shrink: 0; font-style: normal; }
+
+/* ── SOLUZIONE GRID ─────────────── */
+.sol-grid { gap: clamp(40px,6vw,80px); align-items: start; }
+
+.sol-text h2 { margin-bottom: 16px; }
+.sol-text p { font-size: 16px; color: var(--mid); margin-bottom: 16px; line-height: 1.8; }
+
+.sol-features { margin-top: 32px; }
+
+/* ── SVILUPPO FASI ──────────────── */
+.fasi-grid {
+  display: grid; grid-template-columns: repeat(3,1fr); gap: 2px; background: var(--border);
+}
+.fase-card { background: var(--cream); padding: 36px 32px; }
+.fase-n {
+  font-family: 'Trebuchet MS', Calibri, sans-serif;
+  font-size: 10px; letter-spacing: 4px; color: var(--gold);
+  text-transform: uppercase; margin-bottom: 16px;
+}
+.fase-card h3 { font-size: 22px; margin-bottom: 12px; color: var(--ink); }
+.fase-card p { font-size: 15px; color: var(--mid); line-height: 1.7; }
+.fase-period {
+  font-family: 'Trebuchet MS', Calibri, sans-serif;
+  font-size: 11px; color: var(--faint); margin-top: 16px;
+  letter-spacing: 1px;
+}
+
+/* ── RISULTATI ──────────────────── */
+.ris-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2px; background: var(--border); margin-top: 48px; }
+.ris-card { background: var(--parchment-2); padding: 36px; }
+.ris-card .ris-n { font-family: 'Trebuchet MS', Calibri, sans-serif; font-size: 10px; letter-spacing: 4px; color: var(--gold); text-transform: uppercase; margin-bottom: 16px; }
+.ris-card strong { display: block; font-family: 'Cormorant Garamond', serif; font-size: 44px; font-weight: 300; color: var(--ink); line-height: 1; margin-bottom: 8px; }
+.ris-card p { font-size: 15px; color: var(--mid); }
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <a href="index.html" class="nav-logo">
+    <span class="brand">ALGORA</span>
+    <span class="sub">STUDIO</span>
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="chi-siamo.html">Chi siamo</a></li>
+    <li><a href="foliarium.html">Foliarium</a></li>
+    <li><a href="caso-studio.html" class="active">Caso Studio</a></li>
+    <li><a href="contatti.html" class="nav-cta">Contatti</a></li>
+  </ul>
+  <div class="nav-burger" onclick="toggleNav()"><span></span><span></span><span></span></div>
+</nav>
+
+<!-- HERO -->
+<header class="cs-hero">
+  <div class="cs-hero-inner">
+    <p class="label fade-up">Caso Studio</p>
+    <h1 class="fade-up fade-up-1">Archivio di Stato<br><em>di Savona.</em></h1>
+    <p class="fade-up fade-up-2">Come Foliarium ha digitalizzato 190 anni di storia catastale, trasformando settimane di ricerca manuale in pochi secondi di consultazione digitale.</p>
+  </div>
+</header>
+
+<div style="background:var(--green);padding:0 clamp(24px,5vw,72px);">
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(249,246,239,.1);">
+    <div class="cs-stat"><strong>69</strong><span>Comuni gestiti</span></div>
+    <div class="cs-stat"><strong>12.000+</strong><span>Partite catastali</span></div>
+    <div class="cs-stat"><strong>8.500+</strong><span>Possessori</span></div>
+    <div class="cs-stat"><strong>Dal 1830</strong><span>Copertura storica</span></div>
+  </div>
+</div>
+
+<div class="strip">
+  <span class="strip-item">Cliente: <strong>Ministero della Cultura — Archivio di Stato di Savona</strong></span>
+  <span class="strip-item">Prodotto: <strong>Foliarium v1.0 → v1.5</strong></span>
+  <span class="strip-item">Territorio: <strong>Provincia di Savona, Liguria</strong></span>
+</div>
+
+<!-- IL PROBLEMA -->
+<section class="problema">
+  <div class="section-title">
+    <p class="label">Il problema</p>
+    <h2>190 anni di storia<br><em>inaccessibile.</em></h2>
+    <p>L'Archivio di Stato di Savona custodisce i registri catastali storici dell'intera provincia — una documentazione che risale al primo impianto catastale post-unitario del 1830. Un patrimonio immenso, conservato in volumi cartacei, praticamente impossibile da consultare in modo efficiente.</p>
+  </div>
+
+  <div class="before-after">
+    <div class="ba-col before">
+      <p class="ba-label">Prima di Foliarium</p>
+      <h3>Ricerca manuale tra i volumi</h3>
+      <ul class="ba-list">
+        <li><span class="ba-icon">—</span> Giorni o settimane per ricostruire la storia di una proprietà</li>
+        <li><span class="ba-icon">—</span> Nessuna possibilità di incrociare dati tra comuni diversi</li>
+        <li><span class="ba-icon">—</span> Errori di lettura per grafia antica o deterioramento</li>
+        <li><span class="ba-icon">—</span> Impossibile cercare per possessore su più partite</li>
+        <li><span class="ba-icon">—</span> Nessuna reportistica strutturata per le richieste esterne</li>
+        <li><span class="ba-icon">—</span> Rischio di deterioramento progressivo dei documenti originali</li>
+      </ul>
+    </div>
+    <div class="ba-col after">
+      <p class="ba-label">Con Foliarium</p>
+      <h3>Consultazione digitale immediata</h3>
+      <ul class="ba-list">
+        <li><span class="ba-icon">+</span> Ricerca in pochi secondi su 12.000+ partite</li>
+        <li><span class="ba-icon">+</span> Ricerca fuzzy per varianti grafiche storiche dei cognomi</li>
+        <li><span class="ba-icon">+</span> Albero genealogico automatico della proprietà</li>
+        <li><span class="ba-icon">+</span> Incroci tra comuni, possessori e periodi storici</li>
+        <li><span class="ba-icon">+</span> Report PDF e Excel in un click</li>
+        <li><span class="ba-icon">+</span> Audit trail completo di ogni consultazione</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="quote-block">
+    <blockquote>"In pochi secondi troviamo qualsiasi partita catastale. Quello che prima richiedeva ore di ricerca manuale oggi è immediato."</blockquote>
+    <cite>Archivio di Stato di Savona — Provincia di Savona, Liguria</cite>
+  </div>
+</section>
+
+<!-- LA SOLUZIONE -->
+<section class="soluzione">
+  <div class="grid-2 sol-grid">
+    <div class="sol-text">
+      <p class="label" style="margin-bottom:16px;">La soluzione</p>
+      <h2>Foliarium: progettato<br><em>per il catasto storico.</em></h2>
+      <p>Algora Studio ha affrontato il progetto partendo da un'analisi approfondita delle specificità del catasto storico italiano — non adattando uno strumento generico, ma progettando dall'inizio un sistema che rispecchiasse la struttura reale dell'archivio.</p>
+      <p>Il modello dati gestisce le peculiarità del sistema catastale post-unitario: comuni con denominazioni storiche diverse, partite con suffissi e partite secondarie, possessori con paternità, variazioni di proprietà con atti notarili collegati, immobili con classificazioni d'epoca.</p>
+      <p>La ricerca fuzzy è stata progettata specificamente per gestire le varianti grafiche dei cognomi liguri dell'Ottocento — uno dei problemi più critici nella ricerca archivistica storica.</p>
+
+      <div class="sol-features">
+        <ul class="feat-list">
+          <li>
+            <div class="feat-dot"></div>
+            <div class="ft">
+              <strong>Schema relazionale su misura</strong>
+              <p>15 tabelle normalizzate che rispecchiano la struttura reale del catasto storico italiano.</p>
+            </div>
+          </li>
+          <li>
+            <div class="feat-dot"></div>
+            <div class="ft">
+              <strong>Ricerca Levenshtein configurabile</strong>
+              <p>L'archivista può regolare la soglia di similarità in base alla specificità della ricerca.</p>
+            </div>
+          </li>
+          <li>
+            <div class="feat-dot"></div>
+            <div class="ft">
+              <strong>Genealogia automatica delle proprietà</strong>
+              <p>Ricostruzione in un click della catena completa di passaggi di proprietà dal 1830.</p>
+            </div>
+          </li>
+          <li>
+            <div class="feat-dot"></div>
+            <div class="ft">
+              <strong>Formazione inclusa nel progetto</strong>
+              <p>Sessioni di formazione per tutto il personale archivistico, con documentazione completa.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div>
+      <ul class="timeline">
+        <li>
+          <span class="tl-label">Fase 1 — Analisi</span>
+          <p>Raccolta dettagliata dei requisiti con il personale dell'Archivio. Studio dei registri cartacei originali per capire la struttura del dato. Progettazione del modello relazionale.</p>
+        </li>
+        <li>
+          <span class="tl-label">Fase 2 — Sviluppo</span>
+          <p>Sviluppo del database PostgreSQL e dell'interfaccia PyQt6. Implementazione delle procedure stored, delle funzioni di ricerca fuzzy e del sistema di audit. Test su dati reali.</p>
+        </li>
+        <li>
+          <span class="tl-label">Fase 3 — Impianto dati</span>
+          <p>Caricamento e strutturazione dell'intero archivio catastale della provincia di Savona: 69 comuni, 12.000+ partite, 8.500+ possessori, documentazione dal 1830.</p>
+        </li>
+        <li>
+          <span class="tl-label">Fase 4 — Formazione</span>
+          <p>Sessioni di formazione dedicate per archivisti e funzionari. Il sistema è stato operativo da subito, senza periodo di transizione problematico.</p>
+        </li>
+        <li>
+          <span class="tl-label">Fase 5 — Aggiornamenti continui</span>
+          <p>Rapporto attivo con l'Archivio. Da Foliarium v1.0 a v1.5: ogni nuova versione nasce da feedback concreti del cliente. Il sistema evolve con le esigenze.</p>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- LO SVILUPPO -->
+<section class="sviluppo">
+  <div class="section-title">
+    <p class="label">Il progetto in numeri</p>
+    <h2>Sei fasi.<br><em>Un sistema completo.</em></h2>
+    <p>Il progetto si è sviluppato in fasi sequenziali, dalla raccolta dei requisiti alla messa in produzione, con un approccio iterativo che ha coinvolto il personale dell'Archivio in ogni passaggio chiave.</p>
+  </div>
+  <div class="fasi-grid">
+    <div class="fase-card">
+      <p class="fase-n">01</p>
+      <h3>Analisi preliminare</h3>
+      <p>Raccolta dati e analisi dettagliata dello schema ER. Setup dell'ambiente di sviluppo e del database di test.</p>
+      <p class="fase-period">Aprile 2025 — 2 settimane</p>
+    </div>
+    <div class="fase-card">
+      <p class="fase-n">02</p>
+      <h3>Struttura dati</h3>
+      <p>Progettazione e implementazione delle tabelle gerarchiche, delle relazioni e dei vincoli di integrità referenziale.</p>
+      <p class="fase-period">Aprile 2025 — 1 settimana</p>
+    </div>
+    <div class="fase-card">
+      <p class="fase-n">03</p>
+      <h3>Implementazione core</h3>
+      <p>Sviluppo dei trigger di audit, delle stored procedure e di tutta la logica di business del catasto storico.</p>
+      <p class="fase-period">Aprile 2025 — 1 settimana</p>
+    </div>
+    <div class="fase-card">
+      <p class="fase-n">04</p>
+      <h3>Sistema di ricerca</h3>
+      <p>Implementazione degli indici GIN, delle funzioni fuzzy e delle viste materializzate per le query frequenti.</p>
+      <p class="fase-period">Aprile–Maggio 2025 — 1 settimana</p>
+    </div>
+    <div class="fase-card">
+      <p class="fase-n">05</p>
+      <h3>Test e ottimizzazione</h3>
+      <p>Test con dati estesi, stress test del database e ottimizzazione delle performance. Documentazione tecnica completa.</p>
+      <p class="fase-period">Maggio 2025 — 2 settimane</p>
+    </div>
+    <div class="fase-card">
+      <p class="fase-n">06</p>
+      <h3>Pilota e formazione</h3>
+      <p>Implementazione sul sistema dell'Archivio, formazione del personale, aggiustamenti finali e verifica.</p>
+      <p class="fase-period">Maggio–Giugno 2025 — 2 settimane</p>
+    </div>
+  </div>
+</section>
+
+<!-- RISULTATI -->
+<section class="risultati">
+  <p class="label" style="margin-bottom:16px;">I risultati</p>
+  <h2>L'archivio storico<br><em>è ora vivo.</em></h2>
+  <p style="font-size:17px;color:var(--mid);max-width:600px;margin-top:16px;line-height:1.8;">Foliarium ha trasformato un patrimonio documentale quasi inaccessibile in un sistema consultabile in tempo reale da tutto il personale autorizzato dell'Archivio.</p>
+
+  <div class="ris-grid">
+    <div class="ris-card">
+      <p class="ris-n">Efficienza</p>
+      <strong>Secondi</strong>
+      <p>Da giorni di ricerca manuale a pochi secondi di ricerca digitale per trovare qualsiasi partita catastale.</p>
+    </div>
+    <div class="ris-card">
+      <p class="ris-n">Copertura</p>
+      <strong>190 anni</strong>
+      <p>L'intero patrimonio catastale dal 1830 ad oggi è accessibile in un unico sistema strutturato e consultabile.</p>
+    </div>
+    <div class="ris-card">
+      <p class="ris-n">Affidabilità</p>
+      <strong>v 1.5</strong>
+      <p>Da Foliarium 1.0 a 1.5: il software è in uso continuativo e migliora ad ogni versione su feedback reali.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section style="background:var(--ink);padding:clamp(56px,7vw,88px) clamp(24px,5vw,72px);">
+  <div style="max-width:680px;">
+    <p class="label" style="color:var(--gold);margin-bottom:20px;">Il tuo archivio</p>
+    <h2 style="color:var(--ivory);margin-bottom:20px;">Hai un archivio storico<br><em>da rendere consultabile?</em></h2>
+    <p style="font-size:18px;color:rgba(249,246,239,.6);margin-bottom:44px;line-height:1.8;">Il metodo che ha funzionato per Savona può funzionare per il tuo archivio. Il primo passo è una conversazione: raccontaci la tua situazione e capiamo insieme se Foliarium fa per te.</p>
+    <a href="contatti.html" class="btn btn-gold">Parliamo</a>
+    <a href="foliarium.html" class="btn btn-outline-light" style="margin-left:16px;">Scopri Foliarium</a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-main">
+    <div class="footer-brand">
+      <span class="brand">ALGORA</span>
+      <span class="sub">STUDIO</span>
+      <p>Software verticale per domini specifici. Strumenti precisi, duraturi, costruiti per la complessità reale di chi li usa.</p>
+    </div>
+    <div class="footer-col">
+      <h3>Studio</h3>
+      <ul><li><a href="chi-siamo.html">Chi siamo</a></li></ul>
+    </div>
+    <div class="footer-col">
+      <h3>Prodotti</h3>
+      <ul>
+        <li><a href="foliarium.html">Foliarium</a></li>
+        <li><a href="caso-studio.html">Caso Studio</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h3>Contatti</h3>
+      <ul>
+        <li><a href="contatti.html">Scrivici</a></li>
+        <li><a href="mailto:info@algorastudio.it">info@algorastudio.it</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 Algora Studio — Marco Santoro — P.IVA [inserire]</p>
+    <p><a href="#">Privacy</a></p>
+  </div>
+</footer>
+
+<script>
+function toggleNav() { document.getElementById('navLinks').classList.toggle('open'); }
+window.addEventListener('scroll', () => { document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 20); });
+</script>
+</body>
+</html>

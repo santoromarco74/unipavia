@@ -1,0 +1,10 @@
+# Clone di riferimento del repo di produzione: solo locale, mai versionato qui
+# (il progetto IR resta separato da cerca_bolle, vedi docs/proposta-progetto-IR.md)
+reference/
+
+# Dati di produzione: mai versionare bolle.db grezzo, solo l'export anonimizzato
+data/bolle.db
+data/bolle.db-*
+
+__pycache__/
+*.pyc
