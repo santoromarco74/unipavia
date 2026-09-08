@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Foliarium — Gestione Archivi Catastali Storici | Algora Studio</title>
+<meta name="description" content="Foliarium è il software desktop per la gestione e consultazione degli archivi catastali storici italiani. Sviluppato da Algora Studio.">
+<link rel="stylesheet" href="style.css">
+<style>
+.prod-hero {
+  padding: 130px clamp(24px,5vw,72px) 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.prod-hero-inner {
+  display: grid; grid-template-columns: 1fr 420px; gap: 0;
+  align-items: start;
+}
+
+.ph-left { padding: 0 64px 80px 0; border-right: 1px solid var(--border); }
+
+.ph-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--gold-faint); border: 1px solid var(--gold-light);
+  padding: 6px 16px; margin-bottom: 28px;
+}
+.ph-badge span {
+  font-family: 'Trebuchet MS', Calibri, sans-serif;
+  font-size: 11px; letter-spacing: 2px; color: var(--gold); text-transform: uppercase;
+}
+.ph-badge::before {
+  content: ''; width: 6px; height: 6px;
+  border-radius: 50%; background: var(--gold); flex-shrink: 0;
+}
+
+.ph-left h1 { color: var(--ink); margin-bottom: 8px; }
+.ph-tagline {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px; font-style: italic; color: var(--muted); margin-bottom: 40px;
+}
+
+.ph-left p.desc {
+  font-size: 17px; color: var(--mid); max-width: 500px; line-height: 1.9;
+  border-top: 2px solid var(--gold); padding-top: 28px; margin-bottom: 40px;
+}
+
+.ph-right { padding: 0 0 80px 52px; }
+
+.pricing-card { background: var(--ink); padding: 40px; }
+
+.pc-label {
+  font-family: 'Trebuchet MS', Calibri, sans-serif;
+  font-size: 10px; letter-spacing: 4px; color: var(--gold);
+  text-transform: uppercase; margin-bottom: 20px;
+}
+
+.pc-price {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 52px; font-weight: 300; color: var(--ivory); line-height: 1;
+  margin-bottom: 4px;
+}
+.pc-price-note {
+  font-family: 'Trebuchet MS', Calibri, sans-serif;
+  font-size: 12px; color: rgba(249,246,239,.4); margin-bottom: 28px;
+  letter-spacing: 1px;
+}
+
+.pc-includes { list-style: none; margin-bottom: 32px; }
+.pc-includes li {
+  font-family: 'Trebuchet MS', Calibri, sans-serif;
+  font-size: 13px; padding: 10px 0;
+  border-bottom: 1px solid rgba(249,246,239,.08);
+  color: rgba(249,246,239,.7);
+  display: flex; align-items: center; gap: 10px;
+}
+.pc-includes li:last-child { border-bottom: none; }
+.pc-includes li::before {
+  content: ''; width: 4px; height: 4px;
+  border-radius: 50%; background: var(--gold); flex-shrink: 0;
+}
+
+/* ── FUNZIONALITÀ ────────────────────── */
+.features { background: var(--cream); border-top: 1px solid var(--border); }
+
+.feat-intro { max-width: 640px; margin-bottom: 60px; }
+.feat-intro p { font-size: 17px; color: var(--mid); margin-top: 16px; line-height: 1.8; }
+
+.feat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: var(--border); }
+
+.feat-card { background: var(--cream); padding: 40px 36px; }
+.feat-card.dark { background: var(--ink); }
+
+.feat-n {
+  font-family: 'Trebuchet MS', Calibri, sans-serif;
+  font-size: 10px; letter-spacing: 4px; text-transform: uppercase; margin-bottom: 20px;
+}
+.feat-card .feat-n { color: var(--gold); }
+.feat-card.dark .feat-n { color: rgba(184,130,26,.7); }
+
+.feat-card h3 { margin-bottom: 14px; }
+.feat-card h3 { color: var(--ink); }
+.feat-card.dark h3 { color: var(--ivory); }
+
+.feat-card p { font-size: 15px; line-height: 1.7; }
+.feat-card p { color: var(--mid); }
+.feat-card.dark p { color: rgba(249,246,239,.6); }
+
+.feat-detail { list-style: none; margin-top: 20px; }
+.feat-detail li {
+  font-family: 'Trebuchet MS', Calibri, sans-serif;
+  font-size: 13px; padding: 9px 0;
+  border-bottom: 1px solid var(--ink-08);
+  display: flex; align-items: center; gap: 8px;
+}
+.feat-detail li:last-child { border-bottom: none; }
+.feat-detail li::before { content: '—'; color: var(--gold); }
+.feat-card .feat-detail li { color: var(--mid); }
+.feat-card.dark .feat-detail li { color: rgba(249,246,239,.6); border-color: rgba(249,246,239,.08); }
+
+/* ── PACCHETTI ──────────────────────── */
+.pacchetti { background: var(--parchment); border-top: 1px solid var(--border); }
+
+.pack-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 2px; background: var(--border); }
+
+.pack-card { background: var(--parchment); padding: 40px 32px; }
+.pack-card.featured { background: var(--ink); }
+
+.pack-name {
+  font-family: 'Trebuchet MS', Calibri, sans-serif;
+  font-size: 11px; letter-spacing: 4px; text-transform: uppercase; margin-bottom: 12px;
+}
+.pack-card .pack-name { color: var(--gold); }
+.pack-card.featured .pack-name { color: rgba(184,130,26,.8); }
+
+.pack-price {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 44px; font-weight: 300; line-height: 1; margin-bottom: 4px;
+}
+.pack-card .pack-price { color: var(--ink); }
+.pack-card.featured .pack-price { color: var(--gold); }
+
+.pack-cadence {
+  font-family: 'Trebuchet MS', Calibri, sans-serif;
+  font-size: 12px; color: var(--muted); margin-bottom: 28px;
+}
+.pack-card.featured .pack-cadence { color: rgba(249,246,239,.4); }
+
+.pack-feats { list-style: none; margin-bottom: 32px; }
+.pack-feats li {
+  font-family: 'Trebuchet MS', Calibri, sans-serif;
+  font-size: 13px; padding: 10px 0;
+  border-bottom: 1px solid var(--ink-08);
+  display: flex; align-items: center; gap: 10px;
+}
+.pack-feats li:last-child { border-bottom: none; }
+.pack-feats li::before {
+  content: ''; width: 4px; height: 4px; border-radius: 50%;
+  background: var(--gold); flex-shrink: 0;
+}
+.pack-card .pack-feats li { color: var(--mid); }
+.pack-card.featured .pack-feats li { color: rgba(249,246,239,.7); border-color: rgba(249,246,239,.08); }
+
+.pack-cta {
+  display: block; text-align: center; padding: 13px;
+  font-family: 'Trebuchet MS', Calibri, sans-serif;
+  font-size: 12px; letter-spacing: 2px; text-transform: uppercase;
+  text-decoration: none; transition: all .2s;
+}
+.pack-card .pack-cta { background: var(--ink); color: var(--ivory); }
+.pack-card .pack-cta:hover { background: var(--green); }
+.pack-card.featured .pack-cta { background: var(--gold); color: var(--ink); }
+.pack-card.featured .pack-cta:hover { background: var(--gold-hi); }
+
+/* ── REQUISITI ──────────────────────── */
+.requisiti { background: var(--parchment-2); border-top: 1px solid var(--border); }
+
+.req-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: var(--border); max-width: 800px; }
+.req-cell { background: var(--parchment-2); padding: 24px 28px; }
+.req-cell strong {
+  display: block; font-family: 'Trebuchet MS', Calibri, sans-serif;
+  font-size: 13px; color: var(--gold); margin-bottom: 4px; letter-spacing: 1px;
+}
+.req-cell span { font-size: 15px; color: var(--mid); }
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <a href="index.html" class="nav-logo">
+    <span class="brand">ALGORA</span>
+    <span class="sub">STUDIO</span>
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="chi-siamo.html">Chi siamo</a></li>
+    <li><a href="foliarium.html" class="active">Foliarium</a></li>
+    <li><a href="caso-studio.html">Caso Studio</a></li>
+    <li><a href="contatti.html" class="nav-cta">Contatti</a></li>
+  </ul>
+  <div class="nav-burger" onclick="toggleNav()"><span></span><span></span><span></span></div>
+</nav>
+
+<!-- HERO PRODOTTO -->
+<header class="prod-hero">
+  <p class="label" style="margin-bottom:20px;">Un prodotto Algora Studio</p>
+  <div class="prod-hero-inner">
+    <div class="ph-left fade-up">
+      <div class="ph-badge"><span>Versione 1.5 — Attivo</span></div>
+      <h1>Foliarium</h1>
+      <p class="ph-tagline">dove il tempo incontra i dati</p>
+      <p class="desc">Sistema completo per la digitalizzazione, gestione e consultazione degli archivi catastali storici italiani. Sviluppato da Algora Studio su commissione dell'Archivio di Stato di Savona, dove è in uso dalla versione 1.0.</p>
+      <div style="display:flex;gap:16px;flex-wrap:wrap;">
+        <a href="contatti.html" class="btn btn-dark">Richiedi demo gratuita</a>
+        <a href="caso-studio.html" class="btn btn-outline">Caso Studio Savona</a>
+      </div>
+    </div>
+    <div class="ph-right fade-up fade-up-2">
+      <div class="pricing-card">
+        <p class="pc-label">Prezzo di lancio</p>
+        <div class="pc-price">€ 1.200</div>
+        <p class="pc-price-note">+ IVA 22% · Licenza singola postazione</p>
+        <ul class="pc-includes">
+          <li>Installazione remota o on-site (vedi note)</li>
+          <li>Database demo precaricato</li>
+          <li>Manuale utente completo</li>
+          <li>Aggiornamenti sicurezza 12 mesi</li>
+          <li>Supporto avvio (prime 4 settimane)</li>
+        </ul>
+        <a href="contatti.html" class="btn btn-gold" style="width:100%;text-align:center;display:block;">Richiedi preventivo</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="strip">
+  <span class="strip-item">Piattaforme: <strong>Windows · Linux · macOS</strong></span>
+  <span class="strip-item">Database: <strong>PostgreSQL 15+</strong></span>
+  <span class="strip-item">Interfaccia: <strong>Desktop nativa PyQt6</strong></span>
+  <span class="strip-item">Cliente attivo: <strong>Archivio di Stato di Savona</strong></span>
+</div>
+
+<!-- FUNZIONALITÀ -->
+<section class="features">
+  <div class="feat-intro">
+    <p class="label">Funzionalità</p>
+    <h2>Costruito per la<br><em>complessità del catasto storico.</em></h2>
+    <p>Foliarium non è un gestionale generico adattato. È un sistema progettato specificamente per le peculiarità degli archivi catastali italiani: denominazioni storiche, varianti grafiche dei cognomi, passaggi di proprietà su archi temporali di oltre un secolo.</p>
+  </div>
+
+  <div class="feat-grid">
+    <div class="feat-card dark">
+      <p class="feat-n">Ricerca</p>
+      <h3>Fuzzy Search multi-entità</h3>
+      <p>Algoritmo Levenshtein con soglia configurabile. Trova possessori e partite anche con errori di battitura, varianti ortografiche storiche dei cognomi, grafie alternative tipiche dei documenti dell'Ottocento.</p>
+      <ul class="feat-detail">
+        <li>Ricerca su tutti i campi contemporaneamente</li>
+        <li>Filtro per tipo entità (Comune, Partita, Possessore)</li>
+        <li>Soglia di similarità regolabile</li>
+        <li>Esportazione risultati in CSV e PDF</li>
+      </ul>
+    </div>
+    <div class="feat-card">
+      <p class="feat-n">Genealogia</p>
+      <h3>Albero delle proprietà</h3>
+      <p>Ricostruisce automaticamente la catena completa dei passaggi di proprietà dal primo impianto catastale ad oggi. Ogni variazione è collegata all'atto notarile corrispondente.</p>
+      <ul class="feat-detail">
+        <li>Visualizzazione ascendente e discendente</li>
+        <li>Contratti notarili: data, notaio, repertorio</li>
+        <li>Trasferimenti parziali e volture complete</li>
+        <li>Export report genealogico in PDF</li>
+      </ul>
+    </div>
+    <div class="feat-card">
+      <p class="feat-n">Gestione dati</p>
+      <h3>Modello dati completo</h3>
+      <p>Schema relazionale progettato per rappresentare fedelmente la struttura del catasto storico italiano: comuni con gestione storica dei nomi, partite, possessori, immobili, variazioni, contratti, consultazioni.</p>
+      <ul class="feat-detail">
+        <li>Workflow guidato per nuove partite</li>
+        <li>Operazioni transazionali sicure</li>
+        <li>Gestione suffissi e partite secondarie</li>
+        <li>Import massivo da CSV</li>
+      </ul>
+    </div>
+    <div class="feat-card dark">
+      <p class="feat-n">Report</p>
+      <h3>Reportistica archivistica</h3>
+      <p>Generazione di report PDF e Excel con un click. Ogni output rispetta gli standard archivistici e include metadati di autenticità. Ideale per ricerche storiche, pratiche notarili e documentazione ufficiale.</p>
+      <ul class="feat-detail">
+        <li>Report di partita (dettaglio completo)</li>
+        <li>Report possessore (anagrafica + patrimonio)</li>
+        <li>Albero genealogico della proprietà</li>
+        <li>Esportazione massiva per comune</li>
+      </ul>
+    </div>
+    <div class="feat-card">
+      <p class="feat-n">Sicurezza</p>
+      <h3>Controllo accessi e audit</h3>
+      <p>Gestione multi-utente con tre ruoli distinti. Ogni operazione viene registrata nell'audit trail in modo permanente e non modificabile — fondamentale per la compliance degli archivi pubblici.</p>
+      <ul class="feat-detail">
+        <li>Consultatore · Operatore · Amministratore</li>
+        <li>Audit trail con JSON prima/dopo</li>
+        <li>Log filtrabili per utente, data, operazione</li>
+        <li>Sessioni tracciate con IP e applicazione</li>
+      </ul>
+    </div>
+    <div class="feat-card">
+      <p class="feat-n">Infrastruttura</p>
+      <h3>Backup e manutenzione</h3>
+      <p>Sistema integrato di backup e ripristino. Ottimizzazione database con viste materializzate. Suggerimenti automatici di manutenzione. Tutto accessibile dall'interfaccia senza competenze tecniche.</p>
+      <ul class="feat-detail">
+        <li>Backup completo con un click</li>
+        <li>Ripristino guidato da file</li>
+        <li>Aggiornamento viste materializzate</li>
+        <li>Pulizia automatica log di sistema</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- LICENZE -->
+<section style="background:var(--cream);border-top:1px solid var(--border);padding:clamp(64px,8vw,112px) clamp(24px,5vw,72px);">
+  <p class="label" style="margin-bottom:16px;">Licenze software</p>
+  <h2 style="margin-bottom:12px;">Scegli il tipo<br><em>di licenza.</em></h2>
+  <p style="font-size:17px;color:var(--mid);max-width:560px;margin-bottom:56px;line-height:1.8;">La licenza è un acquisto una tantum che include installazione, onboarding e documentazione. Il canone di assistenza è separato e facoltativo.</p>
+
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--border);max-width:900px;">
+    <div style="background:var(--cream);padding:36px 32px;">
+      <p style="font-family:'Trebuchet MS',sans-serif;font-size:10px;letter-spacing:4px;color:var(--gold);text-transform:uppercase;margin-bottom:16px;">Singola postazione</p>
+      <div style="font-family:'Cormorant Garamond',serif;font-size:44px;font-weight:300;color:var(--ink);line-height:1;">€ 1.200</div>
+      <p style="font-family:'Trebuchet MS',sans-serif;font-size:12px;color:var(--muted);margin-bottom:20px;">+ IVA · una tantum</p>
+      <p style="font-size:14px;color:var(--mid);line-height:1.7;margin-bottom:16px;">1 postazione. Ideale per studi professionali, genealogisti, piccoli archivi.</p>
+      <p style="font-family:'Trebuchet MS',sans-serif;font-size:11px;color:var(--gold);letter-spacing:1px;">Con assistenza Standard: <strong>€ 3.600</strong></p>
+    </div>
+    <div style="background:var(--ink);padding:36px 32px;">
+      <p style="font-family:'Trebuchet MS',sans-serif;font-size:10px;letter-spacing:4px;color:rgba(184,130,26,.7);text-transform:uppercase;margin-bottom:16px;">Multi-postazione</p>
+      <div style="font-family:'Cormorant Garamond',serif;font-size:44px;font-weight:300;color:var(--gold);line-height:1;">€ 1.800</div>
+      <p style="font-family:'Trebuchet MS',sans-serif;font-size:12px;color:rgba(249,246,239,.4);margin-bottom:20px;">+ IVA · una tantum · fino a 5 postazioni</p>
+      <p style="font-size:14px;color:rgba(249,246,239,.65);line-height:1.7;margin-bottom:16px;">Fino a 5 postazioni. Per studi strutturati e archivi con più operatori.</p>
+      <p style="font-family:'Trebuchet MS',sans-serif;font-size:11px;color:var(--gold);letter-spacing:1px;">Con assistenza Standard: <strong>€ 4.200</strong></p>
+    </div>
+    <div style="background:var(--cream);padding:36px 32px;">
+      <p style="font-family:'Trebuchet MS',sans-serif;font-size:10px;letter-spacing:4px;color:var(--gold);text-transform:uppercase;margin-bottom:16px;">Sito</p>
+      <div style="font-family:'Cormorant Garamond',serif;font-size:44px;font-weight:300;color:var(--ink);line-height:1;">€ 3.600</div>
+      <p style="font-family:'Trebuchet MS',sans-serif;font-size:12px;color:var(--muted);margin-bottom:20px;">+ IVA · una tantum · postazioni illimitate</p>
+      <p style="font-size:14px;color:var(--mid);line-height:1.7;margin-bottom:16px;">Postazioni illimitate. Per enti, archivi di Stato, PA strutturate.</p>
+      <p style="font-family:'Trebuchet MS',sans-serif;font-size:11px;color:var(--gold);letter-spacing:1px;">Con assistenza Standard: <strong>€ 4.800</strong></p>
+    </div>
+  </div>
+
+  <div style="margin-top:32px;max-width:900px;background:var(--gold-faint);border:1px solid var(--gold-light);padding:24px 32px;display:flex;gap:20px;align-items:flex-start;">
+    <div style="font-family:'Trebuchet MS',sans-serif;font-size:22px;color:var(--gold);flex-shrink:0;">i</div>
+    <div>
+      <p style="font-family:'Trebuchet MS',sans-serif;font-size:11px;letter-spacing:3px;color:var(--gold);text-transform:uppercase;margin-bottom:8px;">Nota per la Pubblica Amministrazione</p>
+      <p style="font-size:15px;color:var(--mid);line-height:1.8;">Tutti i pacchetti Foliarium sono studiati per rientrare nella soglia di <strong>€ 4.999 imponibile</strong> che consente l'affidamento diretto semplificato ai sensi del Codice degli Appalti — senza necessità di procedure di gara. La combinazione massima (Licenza Sito + Assistenza Standard) raggiunge <strong>€ 4.800 + IVA</strong>, entro soglia. Per la Pubblica Amministrazione si applica lo split payment ex art. 17-ter DPR 633/1972: l'IVA viene versata direttamente dall'ente all'Erario.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PACCHETTI -->
+<section class="pacchetti" id="prezzi">
+  <p class="label" style="margin-bottom:16px;">Assistenza e manutenzione</p>
+  <h2 style="margin-bottom:12px;">Scegli il livello<br><em>di supporto.</em></h2>
+  <p style="font-size:17px;color:var(--mid);max-width:560px;margin-bottom:56px;line-height:1.8;">I contratti di assistenza garantiscono continuità operativa, aggiornamenti e formazione. Si rinnovano automaticamente con 30 giorni di preavviso per la disdetta.</p>
+
+  <div class="pack-grid">
+    <div class="pack-card">
+      <p class="pack-name">Base</p>
+      <div class="pack-price">€ 1.200</div>
+      <p class="pack-cadence">+ IVA / anno</p>
+      <ul class="pack-feats">
+        <li>Supporto email</li>
+        <li>Risposta entro 72h lavorative</li>
+        <li>1 sessione formazione/anno</li>
+        <li>Fix bug critici garantiti</li>
+      </ul>
+      <a href="contatti.html" class="pack-cta">Richiedi info</a>
+    </div>
+    <div class="pack-card featured">
+      <p class="pack-name">★ Standard · Più scelto</p>
+      <div class="pack-price">€ 2.400</div>
+      <p class="pack-cadence">+ IVA / anno</p>
+      <ul class="pack-feats">
+        <li>Tutto di Base, più:</li>
+        <li>Risposta prioritaria 24h</li>
+        <li>Aggiornamenti funzionali</li>
+        <li>2 sessioni formazione/anno</li>
+        <li>Accesso remoto assistito</li>
+      </ul>
+      <a href="contatti.html" class="pack-cta">Richiedi preventivo</a>
+    </div>
+    <div class="pack-card">
+      <p class="pack-name">Premium</p>
+      <div class="pack-price">€ 3.600</div>
+      <p class="pack-cadence">+ IVA / anno</p>
+      <ul class="pack-feats">
+        <li>Tutto di Standard, più:</li>
+        <li>Risposta in 4h lavorative</li>
+        <li>Interventi on-site (max 2/anno)</li>
+        <li>Sviluppo funzionalità custom</li>
+        <li>Priorità assoluta</li>
+      </ul>
+      <a href="contatti.html" class="pack-cta">Richiedi info</a>
+    </div>
+  </div>
+</section>
+
+<!-- REQUISITI -->
+<section class="requisiti">
+  <p class="label" style="margin-bottom:16px;">Requisiti di sistema</p>
+  <h2 style="margin-bottom:40px;"><em>Cosa serve</em><br>per installare Foliarium.</h2>
+
+  <div class="req-grid">
+    <div class="req-cell"><strong>Sistema operativo</strong><span>Windows 10/11, Linux, macOS</span></div>
+    <div class="req-cell"><strong>RAM minima</strong><span>4 GB (consigliati 8 GB)</span></div>
+    <div class="req-cell"><strong>PostgreSQL</strong><span>Versione 15 o superiore</span></div>
+    <div class="req-cell"><strong>Python</strong><span>Versione 3.11 o superiore</span></div>
+    <div class="req-cell"><strong>Spazio disco</strong><span>Minimo 10 GB liberi</span></div>
+    <div class="req-cell"><strong>Risoluzione schermo</strong><span>Minimo 1366 × 768</span></div>
+  </div>
+
+  <p style="margin-top:28px;font-size:15px;color:var(--muted);font-style:italic;">L'installazione può essere effettuata da remoto (se il cliente è autonomo nell'uso degli strumenti di accesso remoto) oppure on-site presso la sede del cliente. Tempi e costi variano in base alla modalità scelta — contattateci per un preventivo personalizzato.</p>
+</section>
+
+<!-- CTA -->
+<section style="background:var(--ink);padding:clamp(56px,7vw,88px) clamp(24px,5vw,72px);">
+  <div style="max-width:680px;">
+    <p class="label" style="color:var(--gold);margin-bottom:20px;">Passo successivo</p>
+    <h2 style="color:var(--ivory);margin-bottom:20px;"><em>Una demo vale</em><br>più di mille parole.</h2>
+    <p style="font-size:18px;color:rgba(249,246,239,.6);margin-bottom:44px;line-height:1.8;">Offriamo una dimostrazione gratuita di 45 minuti, su dati realistici della Provincia di Savona. Vedrai Foliarium in azione su un archivio catasto storico completo.</p>
+    <a href="contatti.html" class="btn btn-gold">Prenota la demo</a>
+    <a href="caso-studio.html" class="btn btn-outline-light" style="margin-left:16px;">Caso Studio Savona</a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-main">
+    <div class="footer-brand">
+      <span class="brand">ALGORA</span>
+      <span class="sub">STUDIO</span>
+      <p>Software verticale per domini specifici. Strumenti precisi, duraturi, costruiti per la complessità reale di chi li usa.</p>
+    </div>
+    <div class="footer-col">
+      <h3>Studio</h3>
+      <ul>
+        <li><a href="chi-siamo.html">Chi siamo</a></li>
+        <li><a href="chi-siamo.html#approccio">Approccio</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h3>Prodotti</h3>
+      <ul>
+        <li><a href="foliarium.html">Foliarium</a></li>
+        <li><a href="foliarium.html#prezzi">Prezzi</a></li>
+        <li><a href="caso-studio.html">Caso Studio</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h3>Contatti</h3>
+      <ul>
+        <li><a href="contatti.html">Scrivici</a></li>
+        <li><a href="mailto:info@algorastudio.it">info@algorastudio.it</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 Algora Studio — Marco Santoro — P.IVA [inserire]</p>
+    <p><a href="#">Privacy</a> · <a href="#">Cookie</a></p>
+  </div>
+</footer>
+
+<script>
+function toggleNav() { document.getElementById('navLinks').classList.toggle('open'); }
+window.addEventListener('scroll', () => { document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 20); });
+</script>
+</body>
+</html>

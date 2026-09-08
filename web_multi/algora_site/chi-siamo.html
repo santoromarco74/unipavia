@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chi Siamo — Algora Studio</title>
+<link rel="stylesheet" href="style.css">
+<style>
+.about-hero {
+  padding: 130px clamp(24px,5vw,72px) 80px;
+  border-bottom: 1px solid var(--border);
+  display: grid; grid-template-columns: 1fr 380px; gap: 0;
+  align-items: end;
+}
+.ah-left { padding: 0 64px 0 0; border-right: 1px solid var(--border); }
+.ah-left .label { margin-bottom: 24px; }
+.ah-left h1 { color: var(--ink); margin-bottom: 24px; }
+.ah-left p { font-size: 18px; color: var(--mid); max-width: 520px; line-height: 1.9; border-top: 2px solid var(--gold); padding-top: 24px; }
+.ah-right { padding: 0 0 0 52px; }
+
+.founder-portrait {
+  background: var(--ink); padding: 40px;
+}
+.fp-initials {
+  width: 72px; height: 72px; border-radius: 50%;
+  background: rgba(184,130,26,.15); border: 1px solid rgba(184,130,26,.3);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 28px; color: var(--gold); margin-bottom: 24px;
+}
+.fp-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 28px; font-weight: 400; color: var(--ivory); margin-bottom: 4px;
+}
+.fp-role {
+  font-family: 'Trebuchet MS', Calibri, sans-serif;
+  font-size: 11px; letter-spacing: 3px; color: var(--gold);
+  text-transform: uppercase; margin-bottom: 24px;
+}
+.fp-bio { font-size: 15px; color: rgba(249,246,239,.65); line-height: 1.8; }
+
+/* ── VALORI ─────────────────────── */
+.valori { background: var(--cream); border-bottom: 1px solid var(--border); }
+
+.val-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 2px; background: var(--border); }
+.val-card { background: var(--cream); padding: 44px 36px; }
+.val-card:nth-child(2) { background: var(--ink); }
+
+.vn { font-family: 'Trebuchet MS', Calibri, sans-serif; font-size: 10px; letter-spacing: 4px; text-transform: uppercase; margin-bottom: 20px; }
+.val-card .vn { color: var(--gold); }
+.val-card:nth-child(2) .vn { color: rgba(184,130,26,.7); }
+
+.val-card h3 { margin-bottom: 14px; }
+.val-card h3 { color: var(--ink); }
+.val-card:nth-child(2) h3 { color: var(--ivory); }
+
+.val-card p { font-size: 15px; line-height: 1.7; }
+.val-card p { color: var(--mid); }
+.val-card:nth-child(2) p { color: rgba(249,246,239,.6); }
+
+/* ── APPROCCIO ──────────────────── */
+.approccio-section { background: var(--parchment); }
+
+.app-text h2 { margin-bottom: 16px; }
+.app-text > p { font-size: 16px; color: var(--mid); margin-bottom: 20px; line-height: 1.8; }
+
+.manifesto-full {
+  background: var(--ink); padding: 48px; margin-top: 40px;
+}
+.manifesto-full h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 26px; color: var(--ivory); margin-bottom: 20px; font-weight: 400;
+}
+.manifesto-full p {
+  font-size: 16px; color: rgba(249,246,239,.6); line-height: 1.8; margin-bottom: 16px;
+}
+.manifesto-full p:last-child { margin-bottom: 0; }
+
+.stack-full h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 26px; font-weight: 400; color: var(--ink); margin-bottom: 28px;
+}
+.tech-rows { list-style: none; }
+.tech-rows li {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 16px 0; border-bottom: 1px solid var(--border);
+}
+.tech-rows li:last-child { border-bottom: none; }
+.tech-rows li strong { font-family: 'Trebuchet MS', Calibri, sans-serif; font-size: 14px; color: var(--ink); letter-spacing: 1px; }
+.tech-rows li span { font-size: 14px; color: var(--muted); font-style: italic; }
+
+/* ── FUTURO ─────────────────────── */
+.futuro { background: var(--parchment-2); border-top: 1px solid var(--border); }
+
+.futuro-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 2px; background: var(--border); margin-top: 48px; }
+.fut-card { background: var(--parchment-2); padding: 36px 32px; }
+.fut-n { font-family: 'Trebuchet MS', Calibri, sans-serif; font-size: 10px; letter-spacing: 4px; color: var(--gold); text-transform: uppercase; margin-bottom: 16px; }
+.fut-card h3 { font-size: 22px; color: var(--ink); margin-bottom: 12px; }
+.fut-card p { font-size: 15px; color: var(--mid); line-height: 1.7; }
+.fut-status { font-family: 'Trebuchet MS', Calibri, sans-serif; font-size: 11px; color: var(--faint); margin-top: 16px; letter-spacing: 1px; }
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <a href="index.html" class="nav-logo">
+    <span class="brand">ALGORA</span>
+    <span class="sub">STUDIO</span>
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="chi-siamo.html" class="active">Chi siamo</a></li>
+    <li><a href="foliarium.html">Foliarium</a></li>
+    <li><a href="caso-studio.html">Caso Studio</a></li>
+    <li><a href="contatti.html" class="nav-cta">Contatti</a></li>
+  </ul>
+  <div class="nav-burger" onclick="toggleNav()"><span></span><span></span><span></span></div>
+</nav>
+
+<!-- HERO -->
+<header class="about-hero">
+  <div class="ah-left fade-up">
+    <p class="label">Chi siamo</p>
+    <h1>Uno studio.<br>Software verticale.<br><em>Fatto bene.</em></h1>
+    <p>Algora Studio è uno studio di sviluppo software che progetta applicazioni verticali per domini specifici. Non facciamo tutto — costruiamo strumenti precisi per chi ha esigenze che il software generico non riesce a soddisfare.</p>
+  </div>
+  <div class="ah-right fade-up fade-up-2">
+    <div class="founder-portrait">
+      <div class="fp-initials">MS</div>
+      <p class="fp-name">Marco Santoro</p>
+      <p class="fp-role">Fondatore · Sviluppatore</p>
+      <p class="fp-bio">Sviluppatore software con esperienza in applicazioni gestionali per enti pubblici e privati. Ha progettato e sviluppato Foliarium su commissione dell'Archivio di Stato di Savona, dove il software è attivo dalla versione 1.0.</p>
+    </div>
+  </div>
+</header>
+
+<div class="strip">
+  <span class="strip-item">Sede: <strong>Savona, Liguria — Italia</strong></span>
+  <span class="strip-item">Fondato: <strong>2025</strong></span>
+  <span class="strip-item">Stack: <strong>Python · PostgreSQL · PyQt6</strong></span>
+</div>
+
+<!-- VALORI -->
+<section class="valori" id="valori">
+  <div style="max-width:640px;margin-bottom:52px;">
+    <p class="label" style="margin-bottom:16px;">I nostri valori</p>
+    <h2>Cosa guida<br><em>ogni scelta.</em></h2>
+  </div>
+  <div class="val-grid">
+    <div class="val-card">
+      <p class="vn">01</p>
+      <h3>Specializzazione verticale</h3>
+      <p>Software costruito per domini precisi. La profondità conta più della larghezza. Ogni settore ha le sue regole — il software deve rifletterle, non costringere l'utente ad adattarsi a un modello che non gli appartiene.</p>
+    </div>
+    <div class="val-card">
+      <p class="vn">02</p>
+      <h3>Il cliente come co-progettista</h3>
+      <p>Non sviluppiamo ipotesi di prodotto. Ogni strumento nasce lavorando fianco a fianco con chi lo userà ogni giorno. Foliarium nasce dall'Archivio di Stato di Savona, non da una ricerca di mercato astratta.</p>
+    </div>
+    <div class="val-card">
+      <p class="vn">03</p>
+      <h3>Tecnologie durevoli</h3>
+      <p>Python, PostgreSQL, stack open source consolidato. Niente framework del momento, niente lock-in proprietario. Il software che costruiamo deve essere mantenibile tra dieci anni da chiunque.</p>
+    </div>
+  </div>
+</section>
+
+<!-- APPROCCIO -->
+<section class="approccio-section" id="approccio">
+  <div class="grid-2" style="gap:clamp(40px,6vw,88px);align-items:start;">
+    <div class="app-text">
+      <p class="label" style="margin-bottom:16px;">Il nostro approccio</p>
+      <h2>Non adattiamo.<br><em>Progettiamo.</em></h2>
+      <p>Il problema che vediamo spesso nel software per enti culturali è che vengono usati strumenti generalisti — gestionali, database, fogli di calcolo — adattati per forza a esigenze che non erano state previste nel design originale.</p>
+      <p>Algora Studio parte da un assunto diverso: ogni dominio ha le sue regole, la sua struttura, la sua storia. Il software deve rispecchiarle, non costringere l'utente ad adattarsi a un modello che non gli appartiene.</p>
+      <p>Per il catasto storico italiano questo ha significato progettare un modello dati che gestisce denominazioni storiche dei comuni, varianti grafiche dei cognomi dell'Ottocento, catene di passaggi di proprietà che si estendono su secoli, atti notarili con repertori e notai. Non una scorciatoia — una soluzione vera.</p>
+
+      <div class="manifesto-full">
+        <h3>Il metodo in tre punti</h3>
+        <p><strong style="color:var(--gold);">Ascolto prima del codice.</strong> Prima di scrivere una riga, passiamo tempo sul campo a capire come funziona davvero il dominio. Con gli archivisti, non a distanza.</p>
+        <p><strong style="color:var(--gold);">Iterazioni brevi e feedback frequenti.</strong> Il cliente vede il prodotto mentre si costruisce. Questo evita sorprese e garantisce che il risultato sia utile, non solo corretto.</p>
+        <p><strong style="color:var(--gold);">Rapporto continuativo dopo il lancio.</strong> Il software è vivo. Ogni nuova versione di Foliarium nasce dai feedback dell'Archivio di Savona. Questo è il modello che vogliamo replicare con ogni cliente.</p>
+      </div>
+    </div>
+
+    <div class="stack-full">
+      <h3>Lo stack tecnologico</h3>
+      <ul class="tech-rows">
+        <li><strong>Python 3.11+</strong><span>Logica applicativa</span></li>
+        <li><strong>PostgreSQL 15+</strong><span>Database relazionale enterprise</span></li>
+        <li><strong>PyQt6</strong><span>Interfaccia desktop nativa</span></li>
+        <li><strong>PL/pgSQL</strong><span>Stored procedure e trigger</span></li>
+        <li><strong>psycopg2</strong><span>Connettore Python–PostgreSQL</span></li>
+        <li><strong>fpdf2</strong><span>Generazione report PDF</span></li>
+        <li><strong>openpyxl</strong><span>Esportazione Excel</span></li>
+        <li><strong>PyInstaller</strong><span>Packaging applicazione desktop</span></li>
+      </ul>
+
+      <div style="margin-top:36px;padding:28px;background:var(--gold-faint);border:1px solid var(--gold-light);">
+        <p class="label" style="margin-bottom:12px;">Perché questi strumenti</p>
+        <p style="font-size:15px;color:var(--mid);line-height:1.8;">Python è versatile, leggibile e ha un ecosistema maturo per le applicazioni gestionali. PostgreSQL è il database relazionale open source più avanzato disponibile — affidabile, performante, con funzionalità enterprise. PyQt6 garantisce interfacce desktop native su tutti i sistemi operativi. Stack consolidato, documentato, senza dipendenze esotiche.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FUTURO -->
+<section class="futuro">
+  <p class="label" style="margin-bottom:16px;">Dove stiamo andando</p>
+  <h2>Algora Studio<br><em>nel tempo.</em></h2>
+  <p style="font-size:17px;color:var(--mid);max-width:580px;margin-top:16px;line-height:1.8;">Foliarium è il primo prodotto. Non l'unico. Algora Studio è uno studio che vuole costruire un portfolio di strumenti specializzati per il patrimonio culturale e documentale italiano — ciascuno nato da un'esigenza reale del mercato.</p>
+
+  <div class="futuro-grid">
+    <div class="fut-card">
+      <p class="fut-n">Oggi</p>
+      <h3>Foliarium v1.5</h3>
+      <p>Gestione archivi catastali storici. In uso presso l'Archivio di Stato di Savona. Disponibile per nuovi clienti.</p>
+      <p class="fut-status">● Attivo · In evoluzione</p>
+    </div>
+    <div class="fut-card">
+      <p class="fut-n">Prossimamente</p>
+      <h3>Secondo prodotto</h3>
+      <p>Il prossimo software Algora Studio nascerà dall'ascolto del mercato. Se hai un'esigenza specifica nel settore documentale, raccontacela — potrebbe diventare il nostro prossimo progetto.</p>
+      <p class="fut-status">○ In ascolto</p>
+    </div>
+    <div class="fut-card">
+      <p class="fut-n">In esplorazione</p>
+      <h3>Formazione digitale</h3>
+      <p>Percorsi formativi su digitalizzazione archivistica, gestione documentale e intelligenza artificiale applicata per professionisti del patrimonio culturale italiano.</p>
+      <p class="fut-status">○ In definizione</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section style="background:var(--ink);padding:clamp(56px,7vw,88px) clamp(24px,5vw,72px);">
+  <div style="max-width:680px;">
+    <p class="label" style="color:var(--gold);margin-bottom:20px;">Lavoriamo insieme?</p>
+    <h2 style="color:var(--ivory);margin-bottom:20px;">Hai un progetto<br><em>che richiede precisione?</em></h2>
+    <p style="font-size:18px;color:rgba(249,246,239,.6);margin-bottom:44px;line-height:1.8;">Se gestisci un archivio storico, uno studio professionale con esigenze documentali complesse, o un ente culturale che vuole digitalizzare il proprio patrimonio — parliamoci. Una conversazione di 30 minuti basta per capire se possiamo aiutarti.</p>
+    <a href="contatti.html" class="btn btn-gold">Scrivici</a>
+    <a href="foliarium.html" class="btn btn-outline-light" style="margin-left:16px;">Scopri Foliarium</a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-main">
+    <div class="footer-brand">
+      <span class="brand">ALGORA</span>
+      <span class="sub">STUDIO</span>
+      <p>Software verticale per domini specifici. Strumenti precisi, duraturi, costruiti per la complessità reale di chi li usa.</p>
+    </div>
+    <div class="footer-col">
+      <h3>Studio</h3>
+      <ul>
+        <li><a href="chi-siamo.html">Chi siamo</a></li>
+        <li><a href="chi-siamo.html#approccio">Approccio</a></li>
+        <li><a href="chi-siamo.html#valori">Valori</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h3>Prodotti</h3>
+      <ul>
+        <li><a href="foliarium.html">Foliarium</a></li>
+        <li><a href="caso-studio.html">Caso Studio</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h3>Contatti</h3>
+      <ul>
+        <li><a href="contatti.html">Scrivici</a></li>
+        <li><a href="mailto:info@algorastudio.it">info@algorastudio.it</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 Algora Studio — Marco Santoro — P.IVA [inserire]</p>
+    <p><a href="#">Privacy</a></p>
+  </div>
+</footer>
+
+<script>
+function toggleNav() { document.getElementById('navLinks').classList.toggle('open'); }
+window.addEventListener('scroll', () => { document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 20); });
+</script>
+</body>
+</html>
